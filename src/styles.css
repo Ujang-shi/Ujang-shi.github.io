@@ -308,9 +308,9 @@ h2 {
 h1 {
   margin-bottom: 28px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 86px;
+  font-size: 72px;
   font-weight: 500;
-  line-height: 0.94;
+  line-height: 1;
 }
 
 h2 {
@@ -329,7 +329,7 @@ h3 {
 }
 
 .hero-copy {
-  width: 720px;
+  width: 780px;
   max-width: 100%;
   margin-bottom: 30px;
   color: var(--muted);
@@ -435,7 +435,12 @@ h3 {
   border-top: 1px solid var(--line);
 }
 
+.profile-section > * {
+  min-width: 0;
+}
+
 .portrait-shell {
+  height: 520px;
   min-height: 500px;
   padding: 14px;
   border: 1px solid var(--line);
@@ -446,12 +451,26 @@ h3 {
   position: relative;
   display: grid;
   height: 100%;
-  min-height: 472px;
+  min-height: 0;
   place-items: center;
   overflow: hidden;
   background:
     linear-gradient(135deg, rgba(216, 20, 19, 0.08), transparent 42%),
     linear-gradient(180deg, #fbf8f1, #ebe5da);
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: 46% 58%;
+  filter: saturate(0.92) contrast(1.03);
+}
+
+[data-theme="night"] .portrait img {
+  filter: saturate(0.78) contrast(1.05) brightness(0.74);
 }
 
 [data-theme="night"] .portrait {
@@ -467,6 +486,7 @@ h3 {
   border: 1px solid rgba(19, 19, 19, 0.22);
   border-radius: 50% 50% 38% 38%;
   content: "";
+  display: none;
 }
 
 [data-theme="night"] .portrait::before {
@@ -513,6 +533,11 @@ h3 {
   color: var(--muted);
   font-size: 18px;
   line-height: 1.7;
+}
+
+.profile-copy {
+  min-width: 0;
+  overflow: hidden;
 }
 
 .metric-row {
@@ -606,6 +631,7 @@ h3 {
 }
 
 .experience-section,
+.founder-section,
 .skills-section,
 .education-section {
   border-top: 1px solid var(--line);
@@ -644,6 +670,102 @@ h3 {
   margin-bottom: 16px;
   color: var(--ink) !important;
   font-weight: 900;
+}
+
+.founder-section {
+  width: min(calc(100% - 72px), var(--max));
+  margin: 0 auto;
+  padding: 86px 0;
+  border-top: 1px solid var(--line);
+}
+
+.founder-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 46px;
+  align-items: end;
+  margin-bottom: 30px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.founder-intro p {
+  max-width: 900px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.founder-intro strong {
+  color: var(--red);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.08;
+}
+
+.founder-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+
+.founder-list article {
+  position: relative;
+  min-height: 270px;
+  padding: 22px;
+  background: var(--paper);
+}
+
+.founder-list article::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--glow-angle, 0deg),
+    transparent 0deg,
+    transparent 252deg,
+    rgba(216, 20, 19, 0.08) 278deg,
+    rgba(216, 20, 19, 0.96) 306deg,
+    rgba(19, 19, 19, 0.42) 334deg,
+    transparent 360deg
+  );
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.founder-list article:hover::before {
+  opacity: 1;
+  animation: borderRun 1.65s linear infinite;
+}
+
+.founder-list span {
+  display: block;
+  margin-bottom: 42px;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.founder-list p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 .section-heading {

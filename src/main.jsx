@@ -39,6 +39,39 @@ const experience = [
   },
 ];
 
+const founderStory = [
+  {
+    label: "Problem",
+    title: "International students needed help with everyday, high-friction tasks.",
+    copy:
+      "The service scope was intentionally broad: airport pickup, moving help, driving practice, local resource referrals, internship-related guidance, identity and document handling, and the miscellaneous issues that come up when students are settling into life in the U.S.",
+  },
+  {
+    label: "Product",
+    title: "I helped turn scattered requests into a service platform.",
+    copy:
+      "I defined product goals after we understood recurring needs, then built booking, advisor availability, service listings, status tracking, and matching workflows so requests could move from informal messages into a manageable product flow.",
+  },
+  {
+    label: "Growth",
+    title: "500+ users came through referrals rather than paid acquisition.",
+    copy:
+      "Most users joined because existing students recommended the service to friends. That made trust, response speed, and reliable scheduling more important than marketing polish.",
+  },
+  {
+    label: "Operations",
+    title: "I also managed work allocation and scheduling conflicts.",
+    copy:
+      "Beyond writing code, I set follow-up goals, coordinated employees, assigned work based on availability and service type, and made sure bookings did not collide across advisors and service providers.",
+  },
+  {
+    label: "Feedback",
+    title: "User questions shaped the AI FAQ and workflow details.",
+    copy:
+      "Frequent questions were practical and internal: how to book a time, how to pay deposits, what information was needed before a service, and what happened next. Those questions informed the bilingual FAQ assistant and clearer booking flows.",
+  },
+];
+
 const projects = [
   {
     title: "Deep Research Agent",
@@ -164,6 +197,7 @@ function Header({ theme, onToggleTheme }) {
       <nav aria-label="Primary navigation">
         <a href="#profile">Profile</a>
         <a href="#experience">Experience</a>
+        <a href="#founder">Founder</a>
         <a href="#projects">Works</a>
         <a href="#skills">Skills</a>
         <a href="#education">Education</a>
@@ -181,18 +215,12 @@ function Hero({ theme }) {
     <section className="hero panel-screen" id="top">
       <VideoAtmosphere theme={theme} />
       <div className="hero-inner">
-        <p className="eyebrow">Portfolio 2027 / Software Engineering</p>
-        <h1>
-          Build AI products.
-          <br />
-          Design backend systems.
-          <br />
-          Ship useful software.
-        </h1>
+        <p className="eyebrow">Gaoyuan Shi / Software Engineering Portfolio</p>
+        <h1>Hi, I am Gaoyuan Shi, a CS master's student building full-stack and AI-powered web applications.</h1>
         <p className="hero-copy">
-          Computer Science MS candidate seeking software engineering internships and new grad opportunities in
-          2026-2027. I build practical AI products, reliable backend services, and polished web applications from
-          prototype to production.
+          I am currently pursuing an M.S. in Computer Science at Northeastern University in San Jose. My work focuses
+          on React, backend APIs, database-backed product features, and agentic AI systems. I am looking for software
+          engineering internship and new grad opportunities.
         </p>
         <div className="hero-actions">
           <a className="button-primary" href={`mailto:${profile.email}`}>Contact me</a>
@@ -217,8 +245,7 @@ function Profile() {
     <section className="profile-section" id="profile">
       <div className="portrait-shell">
         <div className="portrait">
-          <div className="portrait-rings" />
-          <span>GS</span>
+          <img src="/assets/profile-cat.jpg" alt="A relaxed cat in a sunny room" />
         </div>
       </div>
       <div className="profile-copy">
@@ -303,6 +330,35 @@ function Experience() {
             <div>
               <h3>{item.title}</h3>
               <p className="experience-org">{item.org}</p>
+              <p>{item.copy}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function FounderStory() {
+  return (
+    <section className="founder-section" id="founder">
+      <div className="section-heading">
+        <p className="eyebrow">Founder story</p>
+        <h2>From scattered student requests to an operational service platform.</h2>
+      </div>
+      <div className="founder-intro">
+        <p>
+          Ningjing started from a very practical observation: international students often do not need one polished
+          product category. They need a reliable person or platform that can help with whatever blocks them next.
+        </p>
+        <strong>0 to 500+ users through friend referrals and community trust.</strong>
+      </div>
+      <div className="founder-list">
+        {founderStory.map((item, index) => (
+          <article key={item.label}>
+            <span>{String(index + 1).padStart(2, "0")} / {item.label}</span>
+            <div>
+              <h3>{item.title}</h3>
               <p>{item.copy}</p>
             </div>
           </article>
@@ -408,6 +464,7 @@ function App() {
         <Hero theme={theme} />
         <Profile />
         <Experience />
+        <FounderStory />
         <Projects />
         <Strengths />
         <Skills />
